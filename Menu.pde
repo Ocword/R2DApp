@@ -1,4 +1,6 @@
 boolean mCond = false;
+boolean mDrag = false;
+
 
 void Menu() {
   
@@ -44,15 +46,18 @@ class Boton {
   }
   
   void bText() {
-    textAlign(CENTER, CENTER);
+    
     textSize(30);
     fill(255);
     text("X", pos.x, pos.y);
   }
   
   void mousePress(color _rgb) {
-    if ((mouseX >= pos.x - size.x/2) && (mouseX <= pos.x + size.x/2) && (mouseY <= pos.y + size.y/2) && (mouseY >= pos.y - size.y/2) && mouseButton == LEFT && mousePressed) fill(_rgb);
-    else if ((mouseX >= pos.x - size.x/2) && (mouseX <= pos.x + size.x/2) && (mouseY <= pos.y + size.y/2) && (mouseY >= pos.y - size.y/2) && mCond) exit();
+    if ((mouseX >= pos.x - size.x/2) && (mouseX <= pos.x + size.x/2) && (mouseY <= pos.y + size.y/2) && (mouseY >= pos.y - size.y/2) && mouseButton == LEFT && mousePressed){
+      fill(_rgb);
+      mDrag = true;
+    }
+    else if (mDrag) fill(_rgb);  
     
     println(mCond);
     
@@ -63,4 +68,5 @@ class Boton {
 
 void mouseReleased() {
   mCond = true;
+  mDrag = false;
 }
