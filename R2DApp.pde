@@ -5,7 +5,9 @@ Table nombres;
 //String [] nombre;
 Circulitos [] datos;
 
-Boton hola;
+int index = 0;
+
+PImage R2Dlogo;
 
 int[] colores = { 4, -1, -1, -1,  1,  1,  0,  2, -1, -1, -1,  0,  0, -1, -1, -1,  1,
         1,  0,  2, -1, -1,  3,  1,  3, -1,  1,  3, -1,  1, -1,  4,  1, -1,
@@ -18,7 +20,7 @@ int[] colores = { 4, -1, -1, -1,  1,  1,  0,  2, -1, -1, -1,  0,  0, -1, -1, -1,
 int textos = 0;
 
 void setup() {
-  size(800, 800);
+  fullScreen();
   maxX = -111111;
   minX = 9999999;
   maxY = maxX;
@@ -70,15 +72,18 @@ void setup() {
     i++;
   }
   
-  hola = new Boton(width/2, height/2, 50, 50);
+  R2Dlogo = loadImage("R2Dlogo.jpge");
 }
 
 void draw() {
-  background(0);
-  hola.show();
-  hola.bText();
-  hola.mColor(color(253, 0, 0));
-  hola.mousePress(color(126, 3, 3));
+  switch (index) {
+    case 0:
+      Menu();
+      break;
+    case 1:
+      R2D();
+      break;
+  }
 }
 
 

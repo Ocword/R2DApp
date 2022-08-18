@@ -1,10 +1,8 @@
-boolean mCond = false;
-boolean mDrag = false;
 
 
 void Menu() {
-  
-  
+  background(0);
+  image(R2Dlogo, width/4, height/2);
 }
 
 
@@ -14,59 +12,41 @@ void Menu() {
 class Boton {
   PVector size, pos;
   color rgb;
-  
-  
-  Boton(float _x, float _y, float w, float h) {
+  String text;
+
+
+  Boton(float _x, float _y, float w, float h, String _text) {
     pos = new PVector(_x, _y);
     size = new PVector(w, h);
-    rgb = 255;
-    
+    rgb = color(120,255,255);
+    text = _text;
+
     fill(rgb);
   }
-  
+
   Boton(float _x, float _y, float w, float h, color _rgb) {
     pos.set(_x, _y);
     size.set(w, h);
     rgb = _rgb;
-    
-    fill(rgb);
-    rectMode(CENTER);
-    rect(pos.x, pos.y, size.x, size.y);    
+    show();
   }
-  
+
   void show() {
-    colorMode(RGB);
+    mColor();
     rectMode(CENTER);
-    rect(pos.x, pos.y, size.x, size.y);    
+    rect(pos.x, pos.y, size.x, size.y);
   }
-  
-  void mColor(color _rgb) {
-    if ((mouseX >= pos.x - size.x/2) && (mouseX <= pos.x + size.x/2) && (mouseY <= pos.y + size.y/2) && (mouseY >= pos.y - size.y/2)) fill(_rgb);
+
+  void mColor() {
+    if ((mouseX >= pos.x - size.x/2) && (mouseX <= pos.x + size.x/2) && (mouseY <= pos.y + size.y/2) && (mouseY >= pos.y - size.y/2)) fill(255,255,255);
     else fill(rgb);
   }
-  
+
   void bText() {
-    
+
     textSize(30);
     fill(255);
-    text("X", pos.x, pos.y);
+    text(text, pos.x, pos.y);
   }
   
-  void mousePress(color _rgb) {
-    if ((mouseX >= pos.x - size.x/2) && (mouseX <= pos.x + size.x/2) && (mouseY <= pos.y + size.y/2) && (mouseY >= pos.y - size.y/2) && mouseButton == LEFT && mousePressed){
-      fill(_rgb);
-      mDrag = true;
-    }
-    else if (mDrag) fill(_rgb);  
-    
-    println(mCond);
-    
-    mCond = false;
-  }
-  
-}
-
-void mouseReleased() {
-  mCond = true;
-  mDrag = false;
 }
