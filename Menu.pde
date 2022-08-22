@@ -1,4 +1,5 @@
 void Menu() {
+  translate(- width/2, - height/2);
   background(0);
   colorMode(RGB);
   imageMode(CENTER);

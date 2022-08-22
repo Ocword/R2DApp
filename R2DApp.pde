@@ -1,6 +1,3 @@
-//C3D
-
-
 //R2D------------------------------------------------------------------------------------------------------------------
 Table table;
 float maxX, minX, maxY, minY;
@@ -143,6 +140,8 @@ void C3D() {
 
 //Programa de R2D
 void R2D() {
+
+  translate(- width/2, - height/2,120);
   background(0);
   colorMode(HSB);
   ellipse(mouseX, mouseY, 20, 20);
