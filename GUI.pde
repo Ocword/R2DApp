@@ -1,19 +1,3 @@
-/*  This file is part of C3D.
-
-    C3D is free software: you can redistribute it and/or modify
-    it under the terms of the GNU General Public License as published by
-    the Free Software Foundation, either version 3 of the License, or
-    (at your option) any later version.
-
-    C3D is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    GNU General Public License for more details.
-
-    You should have received a copy of the GNU General Public License
-    along with C3D.  If not, see <https://www.gnu.org/licenses/>.  */
-
-//Libreria de interfaz para el usuario
 import controlP5.*;
 import java.util.*;
 
@@ -21,6 +5,7 @@ ControlP5 cp5;
 String busq = "";
 boolean mostrarTut = true;
 boolean auto_rotar = true;
+boolean modo2Mapas = false;
 PImage t1, t2, t3, t4, t5, t6, t7, nota;
 
 //Boton guardar mapa
@@ -38,7 +23,7 @@ ScrollableList opcionesMapa;
 //Guardar y cargar estados de camara
 ScrollableList estadosCam;
 //CheckBox modo dos mapas
-CheckBox m2m/*, autoHideUI*/;
+ScrollableList mvision/*, autoHideUI*/;
 Button autoHideUI;
 //campo de busqueda
 Textfield campoBusqueda;
@@ -110,7 +95,7 @@ void crearInterfaz() {
   pushStyle();
   font.setSize(16);
   campoBusqueda = cp5.addTextfield("")
-    .setPosition(padd_entre_op , height - 30 - 20)
+    .setPosition(padd_entre_op, height - 30 - 20)
     .setSize(200, 30)
     .setFont(font)
     .setColor(225)
@@ -118,7 +103,7 @@ void crearInterfaz() {
     .setAutoClear(false)
     .setText("Ingrese busqueda...")
     ;
-    font.setSize(12);
+  font.setSize(12);
   popStyle();
 
   lista_3d = cp5.addDropdownList("Formatos 3D")
@@ -157,11 +142,19 @@ void crearInterfaz() {
   textoMap2.setText(log);
   textoMap2.hide();
 
-  m2m = cp5.addCheckBox("m2m")
-    .setPosition(lista_datos.getWidth()+lista_3d.getWidth() + padd_entre_op * 3, 7)
-    .setSize(25, 25)
-    .setColorLabel(0)
-    .addItem("Modo dos mapas", 0)
+  mvision = cp5.addScrollableList("Modo de Visualizacion")
+    .setPosition(lista_datos.getWidth()+lista_3d.getWidth() + padd_entre_op * 3, 0)
+    .setSize(260, 250)
+    .setBackgroundColor(color(190, 190, 0))
+    .setColorActive(color(255))
+    .setItemHeight(35)
+    .setBarHeight(35)
+    .setColorLabel(255)
+    .addItem("1 Mapa", 0)
+    .addItem("2 Mapas", 1)
+    .addItem("Dato vs Dato", 2)
+    .setColorBackground(color(60))
+    .close()
     ;
 
   autoHideUI = cp5.addButton("autoHideUI")
@@ -177,7 +170,7 @@ void crearInterfaz() {
     ;
 
   opcionesMapa = cp5.addScrollableList("Opciones de zoom")
-    .setPosition(lista_datos.getWidth()+lista_3d.getWidth() + m2m.getWidth() + 90 + padd_entre_op * 4, 0)
+    .setPosition(lista_datos.getWidth()+lista_3d.getWidth() + mvision.getWidth() + 90 + padd_entre_op * 4, 0)
     .setSize(260, 250) //300
     .setBackgroundColor(color(190, 190, 0))
     .setItemHeight(35)//20
@@ -192,7 +185,7 @@ void crearInterfaz() {
     .setColorActive(color(255, 128));
 
   estadosCam = cp5.addScrollableList("Estados de camara")
-    .setPosition(lista_datos.getWidth()+lista_3d.getWidth() + m2m.getWidth() + 90 + opcionesMapa.getWidth() + padd_entre_op * 5, 0)
+    .setPosition(lista_datos.getWidth()+lista_3d.getWidth() + mvision.getWidth() + 90 + opcionesMapa.getWidth() + padd_entre_op * 5, 0)
     .setSize(200, 200)
     .setBackgroundColor(color(190, 190, 0))
     .setItemHeight(35)//20
@@ -203,18 +196,19 @@ void crearInterfaz() {
     .close()
     .setColorActive(color(255, 128));
 
-    //Callback listener para campo busqueda
-    campoBusqueda.onClick(new CallbackListener() {
-      public void controlEvent(CallbackEvent theEvent) {
-        campoBusqueda.setText("");
-      }
-    });
+  //Callback listener para campo busqueda
+  campoBusqueda.onClick(new CallbackListener() {
+    public void controlEvent(CallbackEvent theEvent) {
+      campoBusqueda.setText("");
+    }
+  }
+  );
 }
 
 void mostrarTutorial() {
   image(t1, padd_entre_op-10, lista_datos.getBarHeight()-10); // Menos diametro/2 (d = 20)
   image(t2, lista_datos.getWidth() + padd_entre_op * 2 + 10 - t2.width, lista_datos.getBarHeight()-10); // Menos diametro/2 (d = 20)
-  image(t3, lista_datos.getWidth()+lista_3d.getWidth() + m2m.getWidth() + 90 + padd_entre_op * 4 - 10, lista_datos.getBarHeight()-10); // Menos diametro/2 (d = 20)
+  image(t3, lista_datos.getWidth()+lista_3d.getWidth() + mvision.getWidth() + 90 + padd_entre_op * 4 - 10, lista_datos.getBarHeight()-10); // Menos diametro/2 (d = 20)
   image(t4, width - padd_entre_op - 130 + 10 - t4.width, 7 + autoHideUI.getHeight() ); // Menos diametro/2 (d = 20)
   image(t5, width-220 + 10 - t5.width, height*0.2 + textoMap1.getHeight() - 10); // Menos diametro/2 (d = 20)
   image(t6, width*0.88 + 10 - t6.width, height*0.925 + guardarMapa.getHeight() - 10 - 10 -t6.height); // Menos diametro/2 (d = 20)
@@ -272,7 +266,7 @@ void esconderUI() {
   lista_datos.hide();
   lista_3d.hide();
   opcionesMapa.hide();
-  m2m.hide();
+  mvision.hide();
   autoHideUI.hide();
   guardarMapa.hide();
   escondido = true;
@@ -284,7 +278,7 @@ void mostrarUI() {
   lista_3d.show();
   opcionesMapa.show();
   estadosCam.show();
-  m2m.show();
+  mvision.show();
   autoHideUI.show();
   if (cantMapas == 1) {
     guardarMapa.show();
@@ -307,32 +301,29 @@ void esconder_mostrarUI() {
   } else {
     campoBusqueda.hide();
   }
-
 }
 
 void colorearDatos() {
   if (mapas[0].SELECTOR != 0) {
     if (textoMap1.isVisible()) {
-        for (int j = 0; j < cantMapas; j++) {
-          float[] pos;
-          if (j == 0) {
-            pos = textoMap1.getPosition();
+      for (int j = 0; j < cantMapas; j++) {
+        float[] pos;
+        if (j == 0) {
+          pos = textoMap1.getPosition();
+        } else {
+          pos = textoMap2.getPosition();
+        }
+        for (int i = 0; i < mapas[j].colores.length; i++) {
+          pushStyle();
+          stroke(0);
+          strokeWeight(2);
+          fill(mapas[j].colores[i]);
+          if (i != mapas[j].colores.length - 1) {
+            rect(pos[0] - 12, pos[1] + 3 + i * 14, 12, 12);
+          } else {
+            rect(pos[0] - 12, pos[1] + 3 + (i+1) * 14, 12, 12);
           }
-          else {
-            pos = textoMap2.getPosition();
-          }
-          for (int i = 0; i < mapas[j].colores.length; i++) {
-            pushStyle();
-            stroke(0);
-            strokeWeight(2);
-            fill(mapas[j].colores[i]);
-            if (i != mapas[j].colores.length - 1) {
-              rect(pos[0] - 12, pos[1] + 3 + i * 14, 12, 12);
-            }
-            else {
-              rect(pos[0] - 12, pos[1] + 3 + (i+1) * 14, 12, 12);
-            }
-            popStyle();
+          popStyle();
         }
       }
     }
@@ -420,23 +411,33 @@ void colorearSeleccionado(int op) { //No usar
 
 void controlEvent(ControlEvent theEvent) {
 
-  if (theEvent.isFrom(m2m)) {
-    cantMapas = (int)m2m.getArrayValue()[0] + 1;
+  if (theEvent.isFrom(mvision)) {
+    if (mvision.getValue()==0) {
+      cantMapas = 1;
+      modo2Mapas = false;
+    }
+    if (mvision.getValue()==1) {
+      cantMapas = 2;
+      modo2Mapas = false;
+    }
+    if (mvision.getValue()==2) {
+      cantMapas = 2;
+      modo2Mapas = true;
+    }
+
+
     modif_interfaz();
     setup();
-  }
-  else if (theEvent.isFrom(rotar_auto)) {
-      if (auto_rotar) {
-        auto_rotar = false;
-      }
-      else {
-        auto_rotar = true;
-      }
-    } else if (theEvent.isFrom(autoHideUI)) {
+  } else if (theEvent.isFrom(rotar_auto)) {
+    if (auto_rotar) {
+      auto_rotar = false;
+    } else {
+      auto_rotar = true;
+    }
+  } else if (theEvent.isFrom(autoHideUI)) {
     if (esconderPresionado) {
       esconderPresionado = false;
-    }
-    else {
+    } else {
       esconderPresionado = true;
     }
   } else if (theEvent.isFrom(opcionesMapa)) {
@@ -473,20 +474,16 @@ void controlEvent(ControlEvent theEvent) {
     }
   } else if (theEvent.isFrom(guardarMapa)) {
     record = true;
-  }
-  else if (theEvent.isFrom(ocultar_datos)) {
+  } else if (theEvent.isFrom(ocultar_datos)) {
     if (!textoMap1.isVisible() && cantMapas == 2) {
       textoMap1.show();
       textoMap2.show();
-    }
-    else if (!textoMap1.isVisible()) {
+    } else if (!textoMap1.isVisible()) {
       textoMap1.show();
-    }
-    else if (textoMap1.isVisible() && cantMapas == 1) {
+    } else if (textoMap1.isVisible() && cantMapas == 1) {
       textoMap1.hide();
       textoMap2.hide();
-    }
-    else {
+    } else {
       textoMap1.hide();
       textoMap2.hide();
     }
@@ -500,7 +497,7 @@ void controlEvent(ControlEvent theEvent) {
   if (theEvent.isController()) {
 
     if (theEvent.getController() == lista_datos) {
-  
+
       int op = int(theEvent.getController().getValue()+1);
       List l = lista_datos.getItems();
       String s;
@@ -519,12 +516,11 @@ void controlEvent(ControlEvent theEvent) {
           op = i;
           println("encontrado");
           break;
-        }
-        else {
+        } else {
           println(m[1] + " ::: " + opcion +".");
         }
       }
-      
+
       if (lista_datos.isActive()) {
         lista_datos.bringToFront();
       }
