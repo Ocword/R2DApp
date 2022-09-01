@@ -15,13 +15,13 @@ Boton R2D;
 Boton C3D;
 Boton exploracionDeDatos;
 
-int[] colores = { 4, -1, -1, -1,  1,  1,  0,  2, -1, -1, -1,  0,  0, -1, -1, -1,  1,
-        1,  0,  2, -1, -1,  3,  1,  3, -1,  1,  3, -1,  1, -1,  4,  1, -1,
-       -1,  1,  3,  0,  4,  0, -1,  3, -1,  3, -1,  2,  4,  3,  0,  3, -1,
-        1,  3,  4, -1, -1, -1, -1, -1, -1, -1,  0,  4,  4, -1,  0,  4,  4,
-        0,  3,  2,  2,  4,  3, -1,  4,  4, -1,  2,  2,  2,  1,  4,  0, -1,
-        4,  4,  2,  2,  2,  2,  2,  2, -1,  1, -1, -1, -1, -1, -1, -1, -1,
-       -1, -1, -1, -1};
+int[] colores = { 4, -1, -1, -1, 1, 1, 0, 2, -1, -1, -1, 0, 0, -1, -1, -1, 1,
+  1, 0, 2, -1, -1, 3, 1, 3, -1, 1, 3, -1, 1, -1, 4, 1, -1,
+  -1, 1, 3, 0, 4, 0, -1, 3, -1, 3, -1, 2, 4, 3, 0, 3, -1,
+  1, 3, 4, -1, -1, -1, -1, -1, -1, -1, 0, 4, 4, -1, 0, 4, 4,
+  0, 3, 2, 2, 4, 3, -1, 4, 4, -1, 2, 2, 2, 1, 4, 0, -1,
+  4, 4, 2, 2, 2, 2, 2, 2, -1, 1, -1, -1, -1, -1, -1, -1, -1,
+  -1, -1, -1, -1};
 
 int textos = 0;
 
@@ -35,13 +35,13 @@ void setup() {
   instanciarMapas();
   popStyle();
   setupGUI();
-  
+
   //R2D
   maxX = -111111;
   minX = 9999999;
   maxY = maxX;
   minY = minX;
-  
+
   ellipseMode(RADIUS);
   textAlign(CENTER, CENTER);
   //frameRate(1);
@@ -87,10 +87,10 @@ void setup() {
     println(i, n);
     i++;
   }
-  
+
   R2Dlogo = loadImage("R2Dlogo.jpeg");
   C3Dlogo = loadImage("C3Dlogo.png");
-  
+
   R2D = new Boton(width * 3/8, height/2 - 50, 332, 332, color(0, 0));
   C3D = new Boton(width * 5/8, height/2 - 50, 400, 212, color(0, 0));
   exploracionDeDatos = new Boton(width * 3/8, height * 5/8 + 20, 332, 50, "Exploración de datosR2D");
@@ -98,15 +98,15 @@ void setup() {
 
 void draw() {
   switch (index) {
-    case 0:
-      Menu();
-      break;
-    case 1:
-      R2D();
-      break;
-    case 2:
-      C3D();
-      break;
+  case 0:
+    Menu();
+    break;
+  case 1:
+    R2D();
+    break;
+  case 2:
+    C3D();
+    break;
   }
 }
 
@@ -140,8 +140,8 @@ void C3D() {
 
 //Programa de R2D
 void R2D() {
-
-  translate(- width/2, - height/2,120);
+  hint(DISABLE_DEPTH_TEST);
+  c.beginHUD();
   background(0);
   colorMode(HSB);
   ellipse(mouseX, mouseY, 20, 20);
@@ -162,4 +162,6 @@ void R2D() {
   for (int i = 0; i<106; i++) {
     datosR2D[i].mostrar();
   }
+  c.endHUD();
+  hint(ENABLE_DEPTH_TEST);
 }
