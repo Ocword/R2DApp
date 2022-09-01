@@ -11,9 +11,13 @@ int index = 0;
 PImage R2Dlogo;
 PImage C3Dlogo;
 
+//Botones menu
 Boton R2D;
 Boton C3D;
 Boton exploracionDeDatos;
+
+//Boton R2D
+Boton r2dBack;
 
 int[] colores = { 4, -1, -1, -1, 1, 1, 0, 2, -1, -1, -1, 0, 0, -1, -1, -1, 1,
   1, 0, 2, -1, -1, 3, 1, 3, -1, 1, 3, -1, 1, -1, 4, 1, -1,
@@ -94,6 +98,9 @@ void setup() {
   R2D = new Boton(width * 3/8, height/2 - 50, 332, 332, color(0, 0));
   C3D = new Boton(width * 5/8, height/2 - 50, 400, 212, color(0, 0));
   exploracionDeDatos = new Boton(width * 3/8, height * 5/8 + 20, 332, 50, "Exploración de datosR2D");
+  
+  
+  r2dBack = new Boton(30, height - 30, 50, 30, color(255, 255));
 }
 
 void draw() {
@@ -145,6 +152,8 @@ void R2D() {
   background(0);
   colorMode(HSB);
   ellipse(mouseX, mouseY, 20, 20);
+  r2dBack.show();
+  r2dBack.bClick(0);
   textos =0;
   for (int i = 0; i<106; i++) {
     float xi = datosR2D[i].pos.x;
