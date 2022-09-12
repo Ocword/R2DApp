@@ -95,12 +95,11 @@ void setup() {
   R2Dlogo = loadImage("R2Dlogo.jpeg");
   C3Dlogo = loadImage("C3Dlogo.png");
 
-  R2D = new Boton(width * 3/8, height/2 - 50, 332, 332, color(0, 0));
   C3D = new Boton(width * 5/8, height/2 - 50, 400, 212, color(0, 0));
-  exploracionDeDatos = new Boton(width * 3/8, height * 5/8 + 20, 332, 50, "Exploración de datosR2D");
+  exploracionDeDatos = new Boton(width * 3/8, height * 5/8 + 25, 332, 50, color(80, 0, 200), "Exploración de datosR2D");
   
   
-  r2dBack = new Boton(30, height - 30, 50, 30, color(255, 255));
+  r2dBack = new Boton(55, height - 30, 100, 40, color(80, 0, 200), "Volver");
 }
 
 void draw() {
@@ -153,6 +152,7 @@ void R2D() {
   colorMode(HSB);
   ellipse(mouseX, mouseY, 20, 20);
   r2dBack.show();
+  r2dBack.bText();
   r2dBack.bClick(0);
   textos =0;
   for (int i = 0; i<106; i++) {

@@ -6,10 +6,10 @@ void Menu() {
   imageMode(CENTER);
   image(R2Dlogo, width * 3/8, height/2 - 50);
   image(C3Dlogo, width * 5/8, height/2 - 50);
-  R2D.bClick(1);
   C3D.bClick(2);
   exploracionDeDatos.show();
   exploracionDeDatos.bText();
+  exploracionDeDatos.bClick(1);
   c.endHUD();
   hint(ENABLE_DEPTH_TEST);
 }
@@ -24,10 +24,10 @@ class Boton {
   String text;
 
 
-  Boton(float _x, float _y, float w, float h, String _text) {
+  Boton(float _x, float _y, float w, float h, color _rgb, String _text) {
     pos = new PVector(_x, _y);
     size = new PVector(w, h);
-    rgb = color(120, 255, 255);
+    rgb = _rgb;
     text = _text;
 
     fill(rgb);
