@@ -52,8 +52,11 @@ class Boton {
   }
 
   void bText() {
-
-    textSize(30);
+    PFont monospace;
+    monospace = createFont("LucidaGrande.ttf", 120);
+    textFont(monospace);
+    textAlign(CENTER, CENTER);
+    textSize(25);
     fill(255);
     text(text, pos.x, pos.y);
   }

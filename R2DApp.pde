@@ -120,9 +120,15 @@ void draw() {
 
 //Programa C3D
 void C3D() {
+  r2dBack.show();
+  r2dBack.bText();
+  r2dBack.bClick(0);
+  
   noStroke();
   limpiarPantalla();
-
+  
+  
+  
   //Grabar
   if (record) {
     String nombreOutput = datos.data[0][mapas[0].SELECTOR].replace("(", "").replace(")", "").replace("%", "");
