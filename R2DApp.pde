@@ -92,14 +92,21 @@ void setup() {
     i++;
   }
 
+
+
+
+
   R2Dlogo = loadImage("R2Dlogo.jpeg");
   C3Dlogo = loadImage("C3Dlogo.png");
 
   C3D = new Boton(width * 5/8, height/2 - 50, 400, 212, color(0, 0));
-  exploracionDeDatos = new Boton(width * 3/8, height * 5/8 + 25, 332, 50, color(80, 0, 200), "Exploración de datosR2D");
-  
-  
+  exploracionDeDatos = new Boton(width * 3/8, height * 5/8 + 35, 332, 50, color(80, 0, 200), "Exploración de datosR2D");
+  loadData = new Boton(width * 3/8, height * 5/8 + 90, 332, 50, color(80, 0, 200), "Cargar datos");
+
   r2dBack = new Boton(55, height - 30, 100, 40, color(80, 0, 200), "Volver");
+  
+  loadData("hola", 6.3);
+  saveNewData();
 }
 
 void draw() {
@@ -120,15 +127,9 @@ void draw() {
 
 //Programa C3D
 void C3D() {
-  r2dBack.show();
-  r2dBack.bText();
-  r2dBack.bClick(0);
-  
   noStroke();
   limpiarPantalla();
-  
-  
-  
+
   //Grabar
   if (record) {
     String nombreOutput = datos.data[0][mapas[0].SELECTOR].replace("(", "").replace(")", "").replace("%", "");

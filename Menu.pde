@@ -10,6 +10,9 @@ void Menu() {
   exploracionDeDatos.show();
   exploracionDeDatos.bText();
   exploracionDeDatos.bClick(1);
+  loadData.show();
+  loadData.bText();
+  loadData.bClick(1);
   c.endHUD();
   hint(ENABLE_DEPTH_TEST);
 }
@@ -52,11 +55,8 @@ class Boton {
   }
 
   void bText() {
-    PFont monospace;
-    monospace = createFont("LucidaGrande.ttf", 120);
-    textFont(monospace);
-    textAlign(CENTER, CENTER);
-    textSize(25);
+
+    textSize(30);
     fill(255);
     text(text, pos.x, pos.y);
   }
