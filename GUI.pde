@@ -8,6 +8,9 @@ boolean auto_rotar = true;
 boolean modo2Mapas = false;
 PImage t1, t2, t3, t4, t5, t6, t7, nota;
 
+
+//Boton volver
+Button volver;
 //Boton guardar mapa
 Button guardarMapa;
 //boton rotar automatica
@@ -69,6 +72,12 @@ void cargarTutorial() {
 }
 
 void crearInterfaz() {
+  volver = cp5.addButton("Volver")
+    .setPosition(width*0.1, height*0.925)
+    .setSize(70, 30)
+    .setLabel("Volver")
+    ;
+  
   guardarMapa = cp5.addButton("Guardar Mapa")
     .setPosition(width*0.88, height*0.925)
     .setSize(70, 30)
@@ -487,8 +496,13 @@ void controlEvent(ControlEvent theEvent) {
       textoMap1.hide();
       textoMap2.hide();
     }
+    
   }
-
+  
+  if (theEvent.isFrom(volver)) {
+      index = 0;
+    }
+  
   if (theEvent.isAssignableFrom(Textfield.class)) {
     busq = theEvent.getStringValue();
     crearBusqueda();
