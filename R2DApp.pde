@@ -181,3 +181,9 @@ void R2D() {
   c.endHUD();
   hint(ENABLE_DEPTH_TEST);
 }
+
+//Cargar Datos
+void cargarDatos(){
+  
+  table.addColumn();
+}
