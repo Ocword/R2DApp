@@ -502,6 +502,77 @@ void controlEvent(ControlEvent theEvent) {
   if (theEvent.isFrom(volver)) {
       index = 0;
     }
+    
+  if (theEvent.isFrom(guardar)) {
+      newNameData = cp5LD.get(Textfield.class, "newNameData").getText();
+
+    buenosAiresData = cp5LD.get(Textfield.class, "buenosAiresData").getText();
+    catamarcaData = cp5LD.get(Textfield.class, "catamarcaData").getText();
+    chacoData    = cp5LD.get(Textfield.class, "chacoData").getText();
+    chubutData   = cp5LD.get(Textfield.class, "chubutData").getText();
+    CABA         = cp5LD.get(Textfield.class, "CABA").getText();
+    cordobaData  = cp5LD.get(Textfield.class, "cordobaData").getText();
+    corrientesData = cp5LD.get(Textfield.class, "corrientesData").getText();
+    entreRiosData = cp5LD.get(Textfield.class, "entreRiosData").getText();
+    formosaData = cp5LD.get(Textfield.class, "formosaData").getText();
+    jujuyData = cp5LD.get(Textfield.class, "jujuyData").getText();
+    laPampaData = cp5LD.get(Textfield.class, "laPampaData").getText();
+    laRiojaData = cp5LD.get(Textfield.class, "laRiojaData").getText();
+    mendozasData = cp5LD.get(Textfield.class, "mendozasData").getText();
+    misionesData = cp5LD.get(Textfield.class, "misionesData").getText();
+    neuquenData  = cp5LD.get(Textfield.class, "neuquenData").getText();
+    rioNegroData = cp5LD.get(Textfield.class, "rioNegroData").getText();
+    sanJuanData = cp5LD.get(Textfield.class, "sanJuanData").getText();
+    sanLuisData = cp5LD.get(Textfield.class, "sanLuisData").getText();
+    santaCruzData = cp5LD.get(Textfield.class, "santaCruzData").getText();
+    santaFeData = cp5LD.get(Textfield.class, "santaFeData").getText();
+    sgoDelEsteroData = cp5LD.get(Textfield.class, "sgoDelEsteroData").getText();
+    tierraDelFuegoData = cp5LD.get(Textfield.class, "tierraDelFuegoData").getText();
+    tucumanData = cp5LD.get(Textfield.class, "tucumanData").getText();
+
+    println("Nombre: " + newNameData);
+
+    println("Buenos Aires: " + buenosAiresData);
+    println("Catamarca: " + catamarcaData);
+    println("Chaco: " + chacoData);
+    println("Chubut: " + chubutData);
+    }
+    
+  //if(theEvent.isFrom(guardar)){
+  //  newNameData = cp5.get(Textfield.class, "newNameData").getText();
+
+  //  buenosAiresData = cp5.get(Textfield.class, "buenosAiresData").getText();
+  //  catamarcaData = cp5.get(Textfield.class, "catamarcaData").getText();
+  //  chacoData = cp5.get(Textfield.class, "chacoData").getText();
+  //  chubutData = cp5.get(Textfield.class, "chubutData").getText();
+  //  CABA = cp5.get(Textfield.class, "CABA").getText();
+  //  cordobaData = cp5.get(Textfield.class, "cordobaData").getText();
+  //  corrientesData = cp5.get(Textfield.class, "corrientesData").getText();
+  //  entreRiosData = cp5.get(Textfield.class, "entreRiosData").getText();
+  //  formosaData = cp5.get(Textfield.class, "formosaData").getText();
+  //  jujuyData = cp5.get(Textfield.class, "jujuyData").getText();
+  //  laPampaData = cp5.get(Textfield.class, "laPampaData").getText();
+  //  laRiojaData = cp5.get(Textfield.class, "laRiojaData").getText();
+  //  mendozasData = cp5.get(Textfield.class, "mendozasData").getText();
+  //  misionesData = cp5.get(Textfield.class, "misionesData").getText();
+  //  neuquenData = cp5.get(Textfield.class, "neuquenData").getText();
+  //  rioNegroData = cp5.get(Textfield.class, "rioNegroData").getText();
+  //  saltaData = cp5.get(Textfield.class, "saltaData").getText();
+  //  sanJuanData = cp5.get(Textfield.class, "sanJuanData").getText();
+  //  sanLuisData = cp5.get(Textfield.class, "sanLuisData").getText();
+  //  santaCruzData = cp5.get(Textfield.class, "santaCruzData").getText();
+  //  santaFeData = cp5.get(Textfield.class, "santaFeData").getText();
+  //  sgoDelEsteroData = cp5.get(Textfield.class, "sgoDelEsteroData").getText();
+  //  tierraDelFuegoData = cp5.get(Textfield.class, "tierraDelFuegoData").getText();
+  //  tucumanData = cp5.get(Textfield.class, "tucumanData").getText();
+
+  //  println("Nombre: " + newNameData);
+
+  //  println("Buenos Aires: " + buenosAiresData);
+  //  println("Catamarca: " + catamarcaData);
+  //  println("Chaco: " + chacoData);
+  //  println("Chubut: " + chubutData);
+  //}
   
   if (theEvent.isAssignableFrom(Textfield.class)) {
     busq = theEvent.getStringValue();
@@ -528,10 +599,10 @@ void controlEvent(ControlEvent theEvent) {
         opcion.replace('ü', 'u');
         if (m[1].equals(opcion) == true) {
           op = i;
-          println("encontrado");
+         //   println("encontrado");
           break;
         } else {
-          println(m[1] + " ::: " + opcion +".");
+         // println(m[1] + " ::: " + opcion +".");
         }
       }
 

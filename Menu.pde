@@ -12,7 +12,7 @@ void Menu() {
   exploracionDeDatos.bClick(1);
   loadData.show();
   loadData.bText();
-  loadData.bClick(1);
+  loadData.bClick(3);
   c.endHUD();
   hint(ENABLE_DEPTH_TEST);
 }

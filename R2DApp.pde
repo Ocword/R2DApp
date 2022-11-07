@@ -58,7 +58,7 @@ void setup() {
     // You can access the fields via their column name (or index)
     float x = row.getFloat("x");
     float y = row.getFloat("y");
-    println(x, y);
+   // println(x, y);
 
     minX = min(minX, x);
     minY = min(minY, y);
@@ -68,7 +68,7 @@ void setup() {
     datosR2D[i] = new Circulitos(x, y);
     i++;
   }
-  println(maxX, minX, maxY, minY);
+  //println(maxX, minX, maxY, minY);
 
 
   for ( i = 0; i<106; i++) {
@@ -88,7 +88,7 @@ void setup() {
     String n = row.getString(0);
     datosR2D[i].nombre= n;
     datosR2D[i].num = i;
-    println(i, n);
+  //  println(i, n);
     i++;
   }
 
@@ -105,8 +105,7 @@ void setup() {
 
   r2dBack = new Boton(55, height - 30, 100, 40, color(80, 0, 200), "Volver");
   
-  loadData("hola", 6.3);
-  saveNewData();
+  
 }
 
 void draw() {
@@ -119,6 +118,12 @@ void draw() {
     break;
   case 2:
     C3D();
+    break;
+  case 3:
+    loadDataGUI();
+    index = 4;
+  case 4:
+    insertData();
     break;
   }
 }
